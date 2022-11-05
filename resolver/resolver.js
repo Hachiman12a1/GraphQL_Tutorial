@@ -1,38 +1,22 @@
+const { books, authors } = require("../data/static");
+
 const resolvers = {
   Query: {
-    books: () => {
-      return [
-        {
-          id: 1,
-          name: "de men phieu luu ki",
-          genre: "Adventure",
-        },
-        {
-          id: 2,
-          name: "Lam giau khong kho",
-          genre: "Education",
-        },
-      ];
-    },
-    authors : () => {
-      return [
-        {
-          id : 1,
-          name : "Ngo tat to",
-          age : 27
-        },
-        {
-          id : 2,
-          name : "Nam Cao",
-          age : 106
-        },
-        {
-          id : 3,
-          name : "Vu Trong Phung",
-          age : 109
-        }
-      ]
-    }
+    books: () => books,
+    book: (parent, args) =>
+      books.find((book) => book.id.toString() === args.id),
+    authors: () => authors,
+    author: (parent, args) =>
+      authors.find((author) => author.id.toString() === args.id),
+  },
+
+  Book: {
+    author: (parent, args) =>
+      authors.find((author) => author.id === parent.authorId),
+  },
+  Author: {
+    books: (parent, args) =>
+      books.filter((book) => book.authorId === parent.id),
   },
 };
 
