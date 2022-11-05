@@ -14,6 +14,25 @@ const resolvers = {
         },
       ];
     },
+    authors : () => {
+      return [
+        {
+          id : 1,
+          name : "Ngo tat to",
+          age : 27
+        },
+        {
+          id : 2,
+          name : "Nam Cao",
+          age : 106
+        },
+        {
+          id : 3,
+          name : "Vu Trong Phung",
+          age : 109
+        }
+      ]
+    }
   },
 };
 

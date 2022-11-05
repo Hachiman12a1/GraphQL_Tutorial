@@ -1,16 +1,23 @@
-const {gql} = require('apollo-server-express')
+const { gql } = require("apollo-server-express");
 
-const typeDefs = gql `
-    type Book {
-        id : ID,
-        name : String,
-        genre : String
-    }
+const typeDefs = gql`
+  type Book {
+    id: ID
+    name: String
+    genre: String
+  }
 
-    #Root Type
-    type Query {
-        books : [Book]
-    }
-`
+  type Author {
+    id: ID
+    name: String
+    age: Int
+  }
 
-module.exports = typeDefs
+  #Root Type
+  type Query {
+    books: [Book]
+    authors: [Author]
+  }
+`;
+
+module.exports = typeDefs;
