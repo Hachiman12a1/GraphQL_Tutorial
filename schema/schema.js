@@ -5,14 +5,14 @@ const typeDefs = gql`
     id: ID
     name: String
     genre: String
-    author : Author
+    author: Author
   }
 
   type Author {
     id: ID
     name: String
     age: Int
-    books : [Book]
+    books: [Book]
   }
 
   #Root Type
@@ -20,7 +20,11 @@ const typeDefs = gql`
     books: [Book]
     book(id: ID!): Book
     authors: [Author]
-    author(id: ID!):Author
+    author(id: ID!): Author
+  }
+  type Mutation {
+    createAuthor(id: ID!, name: String, age: Int): Author
+    createBook(id: ID!, name: String, genre: String, authorId : ID!) : Book
   }
 `;
 
