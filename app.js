@@ -8,15 +8,21 @@ const mongoose = require("mongoose");
 const typeDefs = require("./schema/schema");
 const resolvers = require("./resolver/resolver");
 
+// Load db methods
+const mongoDataMethods = require("./data/db");
+
 // Connect to mongoDB
 const connectDB = async () => {
   try {
-    await mongoose.connect("mongodb+srv://datvip10a1:dat682000@grapqltutorial.z5nepir.mongodb.net/?retryWrites=true&w=majority", {
-      useCreateIndex: true,
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-    });
+    await mongoose.connect(
+      "mongodb+srv://datvip10a1:dat682000@grapqltutorial.z5nepir.mongodb.net/?retryWrites=true&w=majority",
+      {
+        useCreateIndex: true,
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false,
+      }
+    );
 
     console.log("MongoDB connected");
   } catch (error) {
@@ -30,6 +36,7 @@ connectDB();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  context: () => ({ mongoDataMethods }),
 });
 
 const app = express();
