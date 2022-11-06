@@ -5,7 +5,7 @@ const { ApolloServer } = require("apollo-server-express");
 const mongoose = require("mongoose");
 
 // Load schema & resolvers
-const typeDefs = require("../schema/schema");
+const typeDefs = require("./schema/schema");
 const resolvers = require("./resolver/resolver");
 
 // Load db methods
